@@ -45,10 +45,25 @@ say(by = "hypnotoad", by_color = "rainbow")
 
 Use cowsay::say() to make character say something 
 
-`usethis::edit_r_profile'
+`usethis::edit_r_profile()`
+
+# Backend project into Github 
+
+`usethis::use_git()`
+`usethis::use_gitbub()`
+
+
+## paletteer to access thousands of color palettes 
+
 
 ```{r}
-
+storms %>% 
+  group_by(name) %>% 
+  summarize(min_pressure = min(pressure, na.rm = TRUE)) %>% 
+  slice_min(n = 10, min_pressure) %>% 
+  ggplot(aes(x = min_pressure, y = name)) +
+  geom_col(aes(fill = name)) +
+  scale_fill_paletteer_d("ggsci::amber_material")
 ```
 
 
