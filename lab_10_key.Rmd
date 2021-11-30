@@ -55,6 +55,8 @@ Use cowsay::say() to make character say something
 
 ## paletteer to access thousands of color palettes 
 
+view(palettes_d_names)
+
 
 ```{r}
 storms %>% 
@@ -66,4 +68,24 @@ storms %>%
   scale_fill_paletteer_d("ggsci::amber_material")
 ```
 
+## One spatial dta example 
+
+```{r}
+vegetation <- read_sf("doc.kml") %>% 
+  select(Name) %>% 
+  clean_names()
+
+ggplot(data = vegetation) +
+  geom_sf(aes(fill = name), color = NA) +
+  theme_minimal() +
+  scale_fill_paletteer_d("khroma::land") +
+  labs(title = "Jornada Basin LTER Vegetation",
+       caption = "Source: Jornada LTER") 
+
+
+```
+
+```{r}
+ggsave(filename = "my_awesome_map.jpg", width = 8, height = 5)
+```
 
